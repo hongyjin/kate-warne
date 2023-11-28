@@ -1,4 +1,4 @@
-package minigame;
+package katewarne;
 
 import javax.swing.*;
 import java.awt.*;

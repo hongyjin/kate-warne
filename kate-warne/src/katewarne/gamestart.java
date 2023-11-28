@@ -1,4 +1,4 @@
-package intro;
+package katewarne;
 
 import java.awt.Graphics;
 import java.awt.Image;

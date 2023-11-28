@@ -1,4 +1,4 @@
-package intro;
+package katewarne;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,12 +14,15 @@ import javax.swing.text.DefaultCaret;
 public class intro1 extends JFrame {
 	private JTextArea textArea;
 
-	private String textToShow = "Hi my name kate warne. " + "I am a detective. "
-			+ "As society becomes more complex and technology develops, events become unknown. "
-			+ "Events that society has turned away from, events that have been forgotten by people,,, "
-			+ "But it's a nightmare for those involved. " + "To break nightmares, to welcome a new morning. "
-			+ "It's the detective's job to do. " + "For someone's new morning to get out of the nightmare again today. "
-			+ "I spend my morning as a nightmare....";
+	private String textToShow = 
+			"나는 케이트 와르네. 바로 탐정이지"
+		    + "사회가 복잡해지고 기술이 발전할수록 사건들들은 미지해진다."
+		    + "사회가 외면한 사건들, 사람들에게 잊혀진 사건들,,,"
+		    + "하지만 당사자들에겐 평생을 남을 악몽이겠지"
+		    + "악몽을 깰 수 있도록, 새로운 아침을 맞이할 수 있도록"
+		    + "하는 것이 바로 탐정의 역할이다."
+		    + "오늘도 악몽에서 벗어날 누군가의 새로운 아침을 위해"
+		    + "나는 나의 아침을 악몽으로 보낸다.";
 
 	private int currentIndex = 0;
 
@@ -29,7 +32,7 @@ public class intro1 extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		textArea = new JTextArea();
-		textArea.setFont(new Font("Courier New", Font.PLAIN, 16));
+		textArea.setFont(new Font("Malgun Gothic", Font.PLAIN, 16));
 		textArea.setForeground(Color.WHITE);
 		textArea.setBackground(Color.BLACK);
 		textArea.setLineWrap(true);

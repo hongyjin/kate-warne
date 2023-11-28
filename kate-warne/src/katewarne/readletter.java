@@ -1,4 +1,4 @@
-package intro;
+package katewarne;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,15 +17,19 @@ import javax.swing.text.DefaultCaret;
 public class readletter extends JFrame {
 	private JTextArea textArea;
 
-	private String textToShow = "Hello, Detective Kate Warne. " + "I am writing to request a case. "
-			+ "I'm Kim, a novelist who has written a total of three masterpieces. "
-			+ "I write a letter in advance because I feel suspicious about the house I'm staying in. "
-			+ "f this letter is in your hands, something will happen to me... " + "We have two guests in total, "
-			+ "One of them has been working with me for three years and has been managing my legal affairs. "
-			+ "The other is a prison guard guest who has been staying at my mansion for five days to write and consult my next film. "
-			+ "I write it down like this because the atmosphere in my house is unusual. "
-			+ "I hope this letter paper is still on my desk... " + "If the incident happened... Please solve it. "
-			+ "That's all. From novelist Kim";
+	private String textToShow = 
+			"안녕하세요, 케이트 와르네 탐정님"
+		    + "사건을 의뢰하기 위해 이렇게 편지를 보냅니다."
+		    + "저는 현재 총 3권의 대작을 지필한 현재 이름을 알리고 있는 소설가 kim입니다."
+		    + "제가 지내고 있는 집에 수상한 기운이 느껴져 이렇게 미리 편지를 적습니다."
+		    + "만약 이 편지가 탐정님 손에 있다면 저에게 무슨 일이 있는 거겠죠..."
+		    + "저희 집에는 총 두 명의 손님이 계시는데,"
+		    + "한 분은 3년 째 같이 일하고 있는 변호사로 같이 지내면서 저의 법적 사항들을 관리하고 있습니다."
+		    + "다른 한 분은 저의 차기작 집필과 자문을 위해 5일 전부터 대저택에 묵고 있던 자문가 손님 입니다."
+		    + "아무래도 저의 집 분위기가 심상치 않아 이렇게 적어둡니다."
+		    + "꼭 이 편지지가 제 책상 속에 고히 있었으면 좋겠네요..."
+		    + "사건이 일어났다면... 해결해주시길 바랍니다."
+		    + "이상. 소설가 kim 올림";
 
 	private int currentIndex = 0;
 
@@ -42,7 +46,7 @@ public class readletter extends JFrame {
 		add(backgroundLabel, BorderLayout.CENTER);
 
 		textArea = new JTextArea();
-		textArea.setFont(new Font("Courier New", Font.PLAIN, 16));
+		textArea.setFont(new Font("Malgun Gothic", Font.PLAIN, 16));
 		textArea.setForeground(Color.BLACK); // Set text color to black
 		textArea.setOpaque(false); // Make text area transparent
 		textArea.setLineWrap(true);
