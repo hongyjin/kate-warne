@@ -21,7 +21,7 @@ class MainFrame extends JFrame {
 
         public BackgroundPanel() {
             //backgroundImage = new ImageIcon("C:\\Users\\user\\git\\kate-warne\\kate-warne\\assets\\images\\mainRoomImage.jpg").getImage();
-            backgroundImage = new ImageIcon("../../../assets/images/mainRoomImage.jpg").getImage();
+            backgroundImage = new ImageIcon("./assets/images/mainRoomImage.jpg").getImage();
         }
 
         @Override

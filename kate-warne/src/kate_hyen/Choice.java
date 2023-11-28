@@ -28,7 +28,7 @@ public class Choice extends JFrame {
 
         public BackgroundPanel() {
             //backgroundImage = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\darkBackground.png").getImage();
-            backgroundImage = new ImageIcon("../../../assets/images/darkBackground.png").getImage();
+            backgroundImage = new ImageIcon("./assets/images/darkBackground.png").getImage();
             JLabel textLabel = new JLabel("범인은 누구일까요?");
             Font labelFont = textLabel.getFont();
             textLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30)); // h2 크기로 설정
@@ -58,7 +58,7 @@ public class Choice extends JFrame {
             setLayout(null);
 
             //ImageIcon imageIcon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\최손님.png");
-            ImageIcon imageIcon = new ImageIcon("../../../assets/images/최손님.png");
+            ImageIcon imageIcon = new ImageIcon("./assets/images/최손님.png");
             
             JLabel imageLabel = new JLabel(resizeIcon(imageIcon, 110, 135));
             imageLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -66,7 +66,7 @@ public class Choice extends JFrame {
             add(imageLabel);
 
             //ImageIcon imageIcon2 = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\김변호.png");
-            ImageIcon imageIcon2 = new ImageIcon("../../../assets/images/김변호.png");
+            ImageIcon imageIcon2 = new ImageIcon("./assets/images/김변호.png");
             JLabel imageLabel2 = new JLabel(resizeIcon(imageIcon2, 100, 130));
             imageLabel2.setHorizontalAlignment(JLabel.CENTER);
             imageLabel2.setBounds(380, 45, 100, 130);

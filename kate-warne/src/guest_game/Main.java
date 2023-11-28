@@ -22,16 +22,16 @@ public class Main extends JFrame {
  	//private Image brick5 = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\brick5.jpg").getImage();
  	//private Image brick8 = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\brick8.jpg").getImage();
  	//private Image ladder = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\ladder.png").getImage();
- 	private Image brick = new ImageIcon("../../../assets/images/brick.png").getImage();
- 	private Image brick5 = new ImageIcon("../../../assets/images/brick5.png").getImage();
- 	private Image brick8 = new ImageIcon("../../../assets/images/brick8.jpg").getImage();
- 	private Image ladder = new ImageIcon("../../../assets/images/ladder.png").getImage();
+ 	private Image brick = new ImageIcon("./assets/images/brick.png").getImage();
+ 	private Image brick5 = new ImageIcon("./assets/images/brick5.png").getImage();
+ 	private Image brick8 = new ImageIcon("./assets/images/brick8.jpg").getImage();
+ 	private Image ladder = new ImageIcon("./assets/images/ladder.png").getImage();
  	private class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
         public BackgroundPanel() {
             //backgroundImage = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\게임배경2.jpg").getImage();
-        	backgroundImage = new ImageIcon("../../../assets/images/게임배경2.jpg").getImage();
+        	backgroundImage = new ImageIcon("./assets/images/게임배경2.jpg").getImage();
         }
 
         @Override
@@ -69,7 +69,7 @@ public class Main extends JFrame {
 
          public StartPanel() {
              //startImage = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\용의자를피해라.png").getImage();
-        	 startImage = new ImageIcon("../../../assets/images/용의자를피해라.png").getImage();
+        	 startImage = new ImageIcon("./assets/images/용의자를피해라.png").getImage();
              addMouseListener(new MouseAdapter() {
                  @Override
                  public void mouseClicked(MouseEvent e) {
