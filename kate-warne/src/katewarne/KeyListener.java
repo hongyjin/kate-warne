@@ -1,4 +1,4 @@
-package guest_game;
+package katewarne;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

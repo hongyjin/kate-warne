@@ -46,7 +46,6 @@ public class Anagram extends JPanel {
         });
         checkButton.setBounds(470, 500, 120, 30);
         
-        
         // 게임 설명 레이블 
         ImageIcon instructionIcon = new ImageIcon("./assets/images/anagram_instruction.png");
         Image instructionImage = instructionIcon.getImage().getScaledInstance(765, 550, Image.SCALE_SMOOTH);
@@ -65,7 +64,6 @@ public class Anagram extends JPanel {
             }
         });
         add(instructionLabel);
-
     }
 
 

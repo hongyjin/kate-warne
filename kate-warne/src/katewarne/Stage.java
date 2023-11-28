@@ -1,4 +1,4 @@
-package guest_game;
+package katewarne;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

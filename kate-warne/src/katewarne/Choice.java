@@ -1,11 +1,8 @@
-package kate_hyen;
+package katewarne;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicRadioButtonUI;
-
-import guest_game.Main;
-import guest_game.Stage;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

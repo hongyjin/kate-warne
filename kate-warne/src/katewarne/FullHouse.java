@@ -1,4 +1,4 @@
-package kate_hyen;
+package katewarne;
 
 import javax.swing.*;
 import javax.swing.border.Border;

@@ -1,8 +1,8 @@
-package guest_game;
-import kate_hyen.GuestRoom;
+package katewarne;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.Border;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

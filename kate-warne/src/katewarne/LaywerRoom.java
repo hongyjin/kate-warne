@@ -1,8 +1,9 @@
-package kate_hyen;
+package katewarne;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import kate_hyen.MainFrame.BackgroundPanel;
+import katewarne.MainFrame.BackgroundPanel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

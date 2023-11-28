@@ -1,4 +1,4 @@
-package guest_game;
+package katewarne;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;

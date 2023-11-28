@@ -1,4 +1,4 @@
-package guest_game;
+package katewarne;
 import java.awt.Image;
 import java.util.Timer;
 import java.util.TimerTask;

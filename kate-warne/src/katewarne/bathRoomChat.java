@@ -1,6 +1,7 @@
 package katewarne;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,12 +30,12 @@ public class bathRoomChat extends JFrame {
         hImageLabel.setBounds(0, 0, 800, 650);
         add(hImageLabel);
         addTextLabels();
-
+        
         addChatButton("./assets/images/chatButton.png", 650, 525);
         addChatBoxImage("./assets/images/chatBoxImage.png", 78, 390);
-
         addImageLabel("./assets/images/BathroomImage.png", 0, 0);
 
+        
         setVisible(true);
     }
 
@@ -98,6 +99,28 @@ public class bathRoomChat extends JFrame {
         });
         add(chatButton);
     }
+    
+    private void addFullHouseButton(String imagePath, int x, int y) {
+        JLabel fullHouseButton = new JLabel();
+        ImageIcon buttonIcon = new ImageIcon(imagePath);
+        Image buttonImage = buttonIcon.getImage();
+        Image sizedButtonImage = buttonImage.getScaledInstance(150, 50, Image.SCALE_SMOOTH);
+        ImageIcon sizedButtonIcon = new ImageIcon(sizedButtonImage);
+        fullHouseButton.setIcon(sizedButtonIcon);
+        fullHouseButton.setBounds(x, y, 150, 50);
+        fullHouseButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                handleFullHouseButtonClick();
+            }
+        });
+        add(fullHouseButton);
+    }
+
+    private void handleFullHouseButtonClick() {
+    	setVisible(false); // 현재 창 감추기
+        new FullHouse().setVisible(true); 
+    }
 
     private void openBathroomPanel() {
         // 패널 전환
@@ -153,7 +176,9 @@ public class bathRoomChat extends JFrame {
             bsHoverPanel.setBounds(620, 440, 40, 60);
             add(bsHoverPanel);
             bsHoverPanel.setOpaque(false);
-
+           
+            
+            addFullHouseButton("./assets/images/fullHouseButton.png", 600, 20); // 대저택 이동 버튼
             addImageLabel("./assets/images/BathroomImage.png", 0, 0); // 욕실 배경 이미지
         }
 

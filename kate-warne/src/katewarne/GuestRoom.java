@@ -1,60 +1,69 @@
-package kate_hyen;
-import javax.swing.border.Border;
+package katewarne;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import katewarne.MainFrame.BackgroundPanel;
 
-
-
-public class LibraryRoom extends JFrame {
-	String message1 = "홍작가의 방에 웬 rc카가..? \n"
-			+ "홍작가한테 rc카를 좋아한다는 얘긴 못 들었는데..\n"
-			+ "그러고보니, 여기에 무슨 소금결정 같은게 남아있잖아?! \n"
-			+ "좀 젖어있는 것 같기도 해! 뭔가 중요한 단서일 것 같군";
-	String message2 = "이름은 최손님인데, 최손님의 사진이 아니잖아?!\n"
-			+ " 그럼 설마 교도관 신분으로 와있다는 최손님이 설마 교도관이 아닌걸까?\n"
-			+ "이걸 홍작가는 알고 있던거야?!\n"
-			+ "확실히 수상하군";
-	String message3 = "재산의 50%를 세민재단에 넘긴다라...\n"
-	        + " 재산과 관련된 문제가 얽혀있나보군.\n"
-	        + "세민재단… 잘 기억해둬야겠어.";
-
-    private class BackgroundPanel extends JPanel {
+public class GuestRoom extends JFrame {
+	private static GuestRoom instance;
+	String message1 = "홍작가 무서운 사람이잖아..?\n"
+			+ "소설을 위해서 이런 범행까지 저질르다니… \n"
+			+ "이건 뭐야? 대신 누명을 쓰고 감옥에 갔다온 사람이 있다고..?\n"
+			+ "그게 최손님인것 같다니..?\n"
+			+ "최손님의 정체는 뭘까";
+	String message2 = "어?! 이건 홍작가에 대한 인터뷰 스크랩이잖아.\n"
+			+ "홍작가에 대해 왜 이렇게 관심이 많은 거지?\n"
+			+ "설마 진짜 홍작가 대신 누명을 쓰고 감옥에 갔던거야..?";
+	String message3 = "전기기사자격증……\n"
+			+ "감전사고로 의심되는 사건의 용의자가 전기기사자격증이라…\n"
+			+ "확실히 의심스럽군.";
+   public class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
         public BackgroundPanel() {
-            //backgroundImage = new ImageIcon("C:\\Users\\user\\git\\kate-warne\\kate-warne\\assets\\images\\LibraryRoomImage.jpg").getImage();
-            backgroundImage = new ImageIcon("./assets/images/LibraryRoomImage.jpg").getImage();
+            
+            //backgroundImage = new ImageIcon("C:\\Users\\user\\git\\kate-warne\\kate-warne\\assets\\images\\GuestRoomImage.jpg").getImage();
+            backgroundImage = new ImageIcon("./assets/images/GuestRoomImage.jpg").getImage();
+
         }
 
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
+
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
         }
     }
-
+   
    // 이미지 크기 조절 메서드
-    private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
-        Image img = icon.getImage();
-        Image resizedImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        return new ImageIcon(resizedImg);
-    }
-
-    public LibraryRoom() {
-        setTitle("홍작가 방");
+   private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
+       Image img = icon.getImage();
+       Image resizedImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+       return new ImageIcon(resizedImg);
+   }
+   
+   public static GuestRoom getInstance() {
+       if (instance == null) {
+           instance = new GuestRoom();
+       }
+       return instance;
+   }
+   
+    public GuestRoom() {
+        setTitle("최손님 방");
         setSize(800, 600);
         setResizable(false); //크기못바꾸게
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
         BackgroundPanel backgroundPanel = new BackgroundPanel();
         setContentPane(backgroundPanel);
-        
         backgroundPanel.setLayout(null);
-    
 
         // 버튼
         JButton goBackButton = new JButton("뒤로가기");
@@ -63,7 +72,6 @@ public class LibraryRoom extends JFrame {
         goBackButton.setFocusPainted(false);
         Border border = BorderFactory.createLineBorder(Color.WHITE, 2);
         goBackButton.setBorder(border);
-        
         goBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,11 +79,17 @@ public class LibraryRoom extends JFrame {
                 MainFrame.getInstance().setVisible(true);
             }
         });
-        
+        //게임으로 이동 버튼
+        JButton gameButton = new JButton("게임으로 이동");
+        gameButton.setBackground(Color.BLACK); 
+        gameButton.setForeground(Color.WHITE); 
+        gameButton.setFocusPainted(false);
+        gameButton.setBorder(border);
+      
 
-        // 유언장 버튼
-        //ImageIcon button1Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\유언장.png");
-        ImageIcon button1Icon = new ImageIcon("./assets/images/유언장.png");
+        // 범행기록문서 버튼
+        //ImageIcon button1Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\범행 기록 문서.png");
+        ImageIcon button1Icon = new ImageIcon("./assets/images/범행 기록 문서.png");
         JLabel button1 = new JLabel(resizeIcon(button1Icon, 30, 30));
         button1.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -92,12 +106,13 @@ public class LibraryRoom extends JFrame {
 
             public void mouseClicked(MouseEvent e) {
                 // 마우스 클릭 시 동작
-            	showDescriptionDialog(button1Icon,message3, "유언장");
+            	showDescriptionDialog(button1Icon,message1, "범행기록문서");
             }
         });
-        // 교도관 이력서 버튼
-        //ImageIcon button2Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\교도관 이력서.jpg");
-        ImageIcon button2Icon = new ImageIcon("./assets/images/교도관 이력서.jpg");
+        // 인터뷰스크랩 버튼
+        //ImageIcon button2Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\인터뷰스크랩.jpg");
+        ImageIcon button2Icon = new ImageIcon("./assets/images/인터뷰스크랩.jpg");
+   
         JLabel button2 = new JLabel(resizeIcon(button2Icon, 30, 30));
         button2.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -114,13 +129,26 @@ public class LibraryRoom extends JFrame {
 
             public void mouseClicked(MouseEvent e) {
                 // 마우스 클릭 시 동작
-            	showDescriptionDialog(button2Icon,message2, "교도관 이력서");
+            	showDescriptionDialog(button2Icon,message2, "인터뷰스크랩");
+            	//'게임으로 이동' 버튼 추가
+            	gameButton.setBounds(300,200,150,30);
+            	gameButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setVisible(false);                   
+                        //new guest_game.Main().setVisible(true);
+                        Main.getInstance().setVisible(true);
+                    }
+                });
+            	
+            	gameButton.setBounds(330, 250, 150, 30);
+                backgroundPanel.add(gameButton);
             }
         });
         
-        // rc카 버튼
-        //ImageIcon button3Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\rc카.png");
-        ImageIcon button3Icon = new ImageIcon("./assets/images/rc카.png");
+        // 전기기사 자격증 버튼
+        //ImageIcon button3Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\전기기사자격증_그림.jpg");
+        ImageIcon button3Icon = new ImageIcon("./assets/images/전기기사자격증_그림.jpg");
         JLabel button3 = new JLabel(resizeIcon(button3Icon, 30, 30));
         button3.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -137,29 +165,29 @@ public class LibraryRoom extends JFrame {
 
             public void mouseClicked(MouseEvent e) {
                 // 마우스 클릭 시 동작
-            	showDescriptionDialog(button3Icon,message1, "rc카");
+            	showDescriptionDialog(button3Icon,message3, "전기기사자격증");
             }
         });
         
-
         // 뒤로가기 버튼
         goBackButton.setBounds(50,40,90,30);
         backgroundPanel.add(goBackButton);
         
 
-        // 유언장 버튼
-        button1.setBounds(250,450,50,50);
+        // 범행기록 버튼
+        button1.setBounds(140,440,50,50);
         backgroundPanel.add(button1);
     
         
-        // 교도관 이력서 버튼
-        button2.setBounds(570,390,50,50);
+        // 인터뷰스크랩 버튼
+        button2.setBounds(200,477,50,50);
         backgroundPanel.add(button2);
        
         
-        // rc카 버튼
-        button3.setBounds(585,480,50,50);
+        // 자격증 버튼
+        button3.setBounds(585,395,50,50);
         backgroundPanel.add(button3);
+       
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -207,7 +235,7 @@ public class LibraryRoom extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new LibraryRoom().setVisible(true);
+            new GuestRoom().setVisible(true);
         });
     }
 }

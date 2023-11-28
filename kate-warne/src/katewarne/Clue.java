@@ -1,4 +1,4 @@
-package guest_game;
+package katewarne;
 
 public class Clue {
 	private int pos_x, pos_y;
