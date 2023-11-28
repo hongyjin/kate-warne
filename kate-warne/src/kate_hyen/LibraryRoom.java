@@ -28,7 +28,7 @@ public class LibraryRoom extends JFrame {
 
         public BackgroundPanel() {
             //backgroundImage = new ImageIcon("C:\\Users\\user\\git\\kate-warne\\kate-warne\\assets\\images\\LibraryRoomImage.jpg").getImage();
-            backgroundImage = new ImageIcon("../../../assets/images/LibraryRoomImage.jpg").getImage();
+            backgroundImage = new ImageIcon("./assets/images/LibraryRoomImage.jpg").getImage();
         }
 
         @Override
@@ -75,7 +75,7 @@ public class LibraryRoom extends JFrame {
 
         // 유언장 버튼
         //ImageIcon button1Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\유언장.png");
-        ImageIcon button1Icon = new ImageIcon("../../../assets/images/유언장.png");
+        ImageIcon button1Icon = new ImageIcon("./assets/images/유언장.png");
         JLabel button1 = new JLabel(resizeIcon(button1Icon, 30, 30));
         button1.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -97,7 +97,7 @@ public class LibraryRoom extends JFrame {
         });
         // 교도관 이력서 버튼
         //ImageIcon button2Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\교도관 이력서.jpg");
-        ImageIcon button2Icon = new ImageIcon("../../../assets/images/교도관 이력서.jpg");
+        ImageIcon button2Icon = new ImageIcon("./assets/images/교도관 이력서.jpg");
         JLabel button2 = new JLabel(resizeIcon(button2Icon, 30, 30));
         button2.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -120,7 +120,7 @@ public class LibraryRoom extends JFrame {
         
         // rc카 버튼
         //ImageIcon button3Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\rc카.png");
-        ImageIcon button3Icon = new ImageIcon("../../../assets/images/rc카.png");
+        ImageIcon button3Icon = new ImageIcon("./assets/images/rc카.png");
         JLabel button3 = new JLabel(resizeIcon(button3Icon, 30, 30));
         button3.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {

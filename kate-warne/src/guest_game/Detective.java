@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 
 public class Detective {
 	//private Image detective = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\kate.png").getImage();
-	private Image detective = new ImageIcon("../../../assets/images/kate.png").getImage();
+	private Image detective = new ImageIcon("./assets/images/kate.png").getImage();
 	public Image getDetective() {
 		return detective;
 	}
