@@ -15,7 +15,7 @@ public class FullHouse {
 
 class MainFrame extends JFrame {
 	private static MainFrame instance;
-	
+	private Key key;  // Key 클래스 인스턴스
     public class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
@@ -36,7 +36,7 @@ class MainFrame extends JFrame {
         setTitle("전체 방 구조");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        key = new Key();  // Key 객체 생성 및 초기화
         BackgroundPanel backgroundPanel = new BackgroundPanel();
         setContentPane(backgroundPanel);
         
@@ -118,6 +118,12 @@ class MainFrame extends JFrame {
        
         setLocationRelativeTo(null);
         setVisible(true); 
+        
+        // 좌측 상단에 열쇠 이미지 추가
+        JLabel[] keyLabels = key.getKeyLabels();
+        for (JLabel label : keyLabels) {
+            backgroundPanel.add(label);
+        }
     }
     
     public static MainFrame getInstance() {

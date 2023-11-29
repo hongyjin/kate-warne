@@ -6,12 +6,17 @@ import javax.swing.JOptionPane;
 
 public class Stage extends Thread {
 	 private boolean isRunning = false;
+	 private Key key;  // Key 클래스 인스턴스 추가
 	 public synchronized void startStage() {
 	        if (!isRunning) {
 	            isRunning = true;
 	            start();
 	        }
 	    }
+	// 생성자에서 Key 클래스 인스턴스 초기화
+	public Stage() {
+		this.key = new Key();
+	}
 	//단서 담을 리스트
 	private ArrayList<Clue> itemList = new ArrayList<>();
 	//몬스터 담을 리스트
@@ -133,6 +138,7 @@ public class Stage extends Thread {
 	private void checkGameStatus() {
 	    // itemList가 비어있으면 "성공" 
 	    if (itemList.isEmpty()) {
+	    	key.setKeyImage(key.getSuccessfulGames(), true); // 키를 증가시키는 함수 추가
 	        handleGameSuccess();
 	    }
 	}
