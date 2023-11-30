@@ -28,7 +28,6 @@ public class GuestRoom extends JFrame {
 
         public BackgroundPanel() {
             
-            //backgroundImage = new ImageIcon("C:\\Users\\user\\git\\kate-warne\\kate-warne\\assets\\images\\GuestRoomImage.jpg").getImage();
             backgroundImage = new ImageIcon("./assets/images/GuestRoomImage.jpg").getImage();
 
         }
@@ -88,7 +87,6 @@ public class GuestRoom extends JFrame {
       
 
         // 범행기록문서 버튼
-        //ImageIcon button1Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\범행 기록 문서.png");
         ImageIcon button1Icon = new ImageIcon("./assets/images/범행 기록 문서.png");
         JLabel button1 = new JLabel(resizeIcon(button1Icon, 30, 30));
         button1.addMouseListener(new MouseAdapter() {
@@ -110,8 +108,7 @@ public class GuestRoom extends JFrame {
             }
         });
         // 인터뷰스크랩 버튼
-        //ImageIcon button2Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\인터뷰스크랩.jpg");
-        ImageIcon button2Icon = new ImageIcon("./assets/images/인터뷰스크랩.jpg");
+        ImageIcon button2Icon = new ImageIcon("./assets/images/interview.png");
    
         JLabel button2 = new JLabel(resizeIcon(button2Icon, 30, 30));
         button2.addMouseListener(new MouseAdapter() {
@@ -147,7 +144,6 @@ public class GuestRoom extends JFrame {
         });
         
         // 전기기사 자격증 버튼
-        //ImageIcon button3Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\전기기사자격증_그림.jpg");
         ImageIcon button3Icon = new ImageIcon("./assets/images/전기기사자격증_그림.jpg");
         JLabel button3 = new JLabel(resizeIcon(button3Icon, 30, 30));
         button3.addMouseListener(new MouseAdapter() {
@@ -180,7 +176,7 @@ public class GuestRoom extends JFrame {
     
         
         // 인터뷰스크랩 버튼
-        button2.setBounds(200,477,50,50);
+        button2.setBounds(200,440,50,50);
         backgroundPanel.add(button2);
        
         

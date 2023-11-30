@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 
 public class LibraryRoom extends JFrame {
+	private static LibraryRoom instance;
 	String message1 = "홍작가의 방에 웬 rc카가..? \n"
 			+ "홍작가한테 rc카를 좋아한다는 얘긴 못 들었는데..\n"
 			+ "그러고보니, 여기에 무슨 소금결정 같은게 남아있잖아?! \n"
@@ -27,7 +28,6 @@ public class LibraryRoom extends JFrame {
         private Image backgroundImage;
 
         public BackgroundPanel() {
-            //backgroundImage = new ImageIcon("C:\\Users\\user\\git\\kate-warne\\kate-warne\\assets\\images\\LibraryRoomImage.jpg").getImage();
             backgroundImage = new ImageIcon("./assets/images/LibraryRoomImage.jpg").getImage();
         }
 
@@ -43,6 +43,12 @@ public class LibraryRoom extends JFrame {
         Image img = icon.getImage();
         Image resizedImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(resizedImg);
+    }
+    public static LibraryRoom getInstance() {
+        if (instance == null) {
+            instance = new LibraryRoom();
+        }
+        return instance;
     }
 
     public LibraryRoom() {
@@ -71,10 +77,15 @@ public class LibraryRoom extends JFrame {
                 MainFrame.getInstance().setVisible(true);
             }
         });
+        //게임으로 이동 버튼
+        JButton gameButton = new JButton("게임으로 이동");
+        gameButton.setBackground(Color.BLACK); 
+        gameButton.setForeground(Color.WHITE); 
+        gameButton.setFocusPainted(false);
+        gameButton.setBorder(border);
         
 
         // 유언장 버튼
-        //ImageIcon button1Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\유언장.png");
         ImageIcon button1Icon = new ImageIcon("./assets/images/유언장.png");
         JLabel button1 = new JLabel(resizeIcon(button1Icon, 30, 30));
         button1.addMouseListener(new MouseAdapter() {
@@ -96,7 +107,6 @@ public class LibraryRoom extends JFrame {
             }
         });
         // 교도관 이력서 버튼
-        //ImageIcon button2Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\교도관 이력서.jpg");
         ImageIcon button2Icon = new ImageIcon("./assets/images/교도관 이력서.jpg");
         JLabel button2 = new JLabel(resizeIcon(button2Icon, 30, 30));
         button2.addMouseListener(new MouseAdapter() {
@@ -119,7 +129,6 @@ public class LibraryRoom extends JFrame {
         });
         
         // rc카 버튼
-        //ImageIcon button3Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\rc카.png");
         ImageIcon button3Icon = new ImageIcon("./assets/images/rc카.png");
         JLabel button3 = new JLabel(resizeIcon(button3Icon, 30, 30));
         button3.addMouseListener(new MouseAdapter() {
@@ -138,6 +147,18 @@ public class LibraryRoom extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 // 마우스 클릭 시 동작
             	showDescriptionDialog(button3Icon,message1, "rc카");
+            	gameButton.setBounds(300,200,150,30);
+            	gameButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setVisible(false); 
+                        new Game().setVisible(true);
+                        //Main.getInstance().setVisible(true);
+                    }
+                });
+            	
+            	gameButton.setBounds(330, 250, 150, 30);
+                backgroundPanel.add(gameButton);
             }
         });
         

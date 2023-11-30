@@ -18,13 +18,9 @@ public class Main extends JFrame {
  	private Image screenImage;
  	private Graphics screenGraphic;
  	//사용할 이미지
- 	//private Image brick = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\brick.png").getImage();
- 	//private Image brick5 = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\brick5.jpg").getImage();
- 	//private Image brick8 = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\brick8.jpg").getImage();
- 	//private Image ladder = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\ladder.png").getImage();
- 	private Image brick = new ImageIcon("./assets/images/brick.png").getImage();
- 	private Image brick5 = new ImageIcon("./assets/images/brick5.png").getImage();
- 	private Image brick8 = new ImageIcon("./assets/images/brick8.jpg").getImage();
+ 	private Image brick = new ImageIcon("./assets/images/brick2.png").getImage();
+ 	private Image brick5 = new ImageIcon("./assets/images/brick52.png").getImage();
+ 	private Image brick8 = new ImageIcon("./assets/images/brick82.jpg").getImage();
  	private Image ladder = new ImageIcon("./assets/images/ladder.png").getImage();
  	private class BackgroundPanel extends JPanel {
         private Image backgroundImage;

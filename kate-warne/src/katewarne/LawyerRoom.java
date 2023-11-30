@@ -11,7 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class LaywerRoom extends JFrame {
+public class LawyerRoom extends JFrame {
+	private static LawyerRoom instance;
 	String message1 = "기사내용이 “화재사건의 유일한 생존자 김변호”..?\n"
 			+ "김변호가 힘들게 살아왔나보군.. \n"
 			+ "근데 범인이 별모양의 흉터를 갖고있다라…\n"
@@ -30,7 +31,6 @@ public class LaywerRoom extends JFrame {
 
         public BackgroundPanel() {
             
-            //backgroundImage = new ImageIcon("C:\\Users\\user\\git\\kate-warne\\kate-warne\\assets\\images\\LaywerRoomImage.jpg").getImage();
             backgroundImage = new ImageIcon("./assets/images/LaywerRoomImage.jpg").getImage();
 
         }
@@ -48,8 +48,14 @@ public class LaywerRoom extends JFrame {
        Image resizedImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
        return new ImageIcon(resizedImg);
    }
+   public static LawyerRoom getInstance() {
+       if (instance == null) {
+           instance = new LawyerRoom();
+       }
+       return instance;
+   }
    
-    public LaywerRoom() {
+    public LawyerRoom() {
         setTitle("김변호 방");
         setSize(800, 600);
         setResizable(false); //크기못바꾸게
@@ -73,9 +79,14 @@ public class LaywerRoom extends JFrame {
                 MainFrame.getInstance().setVisible(true);
             }
         });
+        //게임으로 이동 버튼
+        JButton gameButton = new JButton("게임으로 이동");
+        gameButton.setBackground(Color.BLACK); 
+        gameButton.setForeground(Color.WHITE); 
+        gameButton.setFocusPainted(false);
+        gameButton.setBorder(border);
 
         // 세민재단문서 버튼
-        //ImageIcon button1Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\세민재단문서.jpg");
         ImageIcon button1Icon = new ImageIcon("./assets/images/세민재단문서.jpg");
         JLabel button1 = new JLabel(resizeIcon(button1Icon, 30, 30));
         button1.addMouseListener(new MouseAdapter() {
@@ -97,8 +108,7 @@ public class LaywerRoom extends JFrame {
             }
         });
         // 기사스크랩 버튼
-        //ImageIcon button2Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\기사스크랩.png");
-        ImageIcon button2Icon = new ImageIcon("./assets/images/기사스크랩.png");
+        ImageIcon button2Icon = new ImageIcon("./assets/images/newspaper.png");
         JLabel button2 = new JLabel(resizeIcon(button2Icon, 30, 30));
         button2.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -120,7 +130,6 @@ public class LaywerRoom extends JFrame {
         });
         
         // 택배상자 버튼
-        //ImageIcon button3Icon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\택배상자.png");
         ImageIcon button3Icon = new ImageIcon("./assets/images/택배상자.png");
         JLabel button3 = new JLabel(resizeIcon(button3Icon, 30, 30));
         button3.addMouseListener(new MouseAdapter() {
@@ -138,7 +147,19 @@ public class LaywerRoom extends JFrame {
 
             public void mouseClicked(MouseEvent e) {
                 // 마우스 클릭 시 동작
-            	showDescriptionDialog(button3Icon,message3, "택바상자");
+            	showDescriptionDialog(button3Icon,message3, "택배상자");
+            	gameButton.setBounds(300,200,150,30);
+            	gameButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setVisible(false);                   
+                        //Main.getInstance().setVisible(true);
+                        new Anagram().setVisible(true);
+                    }
+                });
+            	
+            	gameButton.setBounds(330, 250, 150, 30);
+                backgroundPanel.add(gameButton);
             }
         });
         
@@ -210,7 +231,7 @@ public class LaywerRoom extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new LaywerRoom().setVisible(true);
+            new LawyerRoom().setVisible(true);
         });
     }
 }

@@ -82,7 +82,7 @@ class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // 버튼 클릭 시 GuestRoom으로 이동
             	setVisible(false); // 현재 창 감추기
-                new LaywerRoom().setVisible(true); 
+                new LawyerRoom().setVisible(true); 
             }
         });
         
