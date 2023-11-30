@@ -24,7 +24,7 @@ public class Stage extends Thread {
 	    }
 	// 생성자에서 Key 클래스 인스턴스 초기화
 	public Stage() {
-		this.key = new Key();
+		key = Key.getInstance();
 	}
 	//단서 담을 리스트
 	private ArrayList<Clue> itemList = new ArrayList<>();
@@ -88,6 +88,7 @@ public class Stage extends Thread {
 	public void handleGameSuccess() {
 		Object[] options = {"예", "다시하기"};
 		String message = "Game Clear!\n다시 방으로 이동하시겠습니까?";
+
 		int result = JOptionPane.showOptionDialog(
 			    null, 
 			    message, 
@@ -103,6 +104,7 @@ public class Stage extends Thread {
 	    // 확인 버튼을 눌렀을 때 GuestRoom으로
 	    if (result == JOptionPane.OK_OPTION) {
 	        Main.getInstance().switchToGuestRoom();
+
 	    }
 
 	    // 추가: 게임 클리어 시 초기화 작업 수행
@@ -146,10 +148,9 @@ public class Stage extends Thread {
 	// 게임 클리어 등의 처리
 	private void checkGameStatus() {
 	    // itemList가 비어있으면 "성공" 
-	    if (itemList.isEmpty()) {
-	    	key.setKeyImage(key.getSuccessfulGames(), true); // 키를 증가시키는 함수 추가
-	   
+	    if (itemList.isEmpty()) {	   
 	        handleGameSuccess(); 
+	        key.setKeyImage(key.getSuccessfulGames(), true); // 키를 증가시키는 함수 추가
 	    }
 	}
 

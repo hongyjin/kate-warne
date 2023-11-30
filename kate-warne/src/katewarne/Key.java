@@ -4,13 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Key {
-    private int successGames;  // 성공한 미니게임 수
+    private static Key instance;  // 싱글톤 인스턴스
+    private int successGames;      // 성공한 미니게임 수
     private JLabel[] keyLabels;    // 열쇠 이미지를 표시하는 JLabel 배열
 
-    public Key() {
+    private Key() {
         this.successGames = 0;
         this.keyLabels = new JLabel[3];  // 세 개의 열쇠 이미지를 표시할 JLabel 배열 생성
         initializeKeyLabels();  // JLabel 초기화 메서드 호출
+    }
+
+    public static Key getInstance() {
+        if (instance == null) {
+            instance = new Key();
+        }
+        return instance;
     }
 
     private void initializeKeyLabels() {

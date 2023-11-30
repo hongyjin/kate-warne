@@ -21,7 +21,7 @@ public class HangMan extends JPanel {
     private int currentLevel = 2; // 현재 레벨
 
     public HangMan() {
-    	this.key = new Key();
+    	key = Key.getInstance();
         setLayout(new BorderLayout());
         
         // 배경 이미지 설정
@@ -193,10 +193,11 @@ public class HangMan extends JPanel {
 
             // 정답을 모두 맞추면 게임 종료
             if (guessedWord.toString().equalsIgnoreCase(answer)) {
-            	key.setKeyImage(key.getSuccessfulGames(), true);
+            	key.setKeyImage(0, true);
                 int option = JOptionPane.showOptionDialog(HangMan.this,
                         "축하합니다! 단어를 맞췄습니다.", "게임 종료", JOptionPane.DEFAULT_OPTION,
                         JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
                 System.exit(0);
 
             } else {

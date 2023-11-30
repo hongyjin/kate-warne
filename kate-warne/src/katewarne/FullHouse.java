@@ -36,7 +36,7 @@ class MainFrame extends JFrame {
         setTitle("전체 방 구조");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        key = new Key();  // Key 객체 생성 및 초기화
+        key = Key.getInstance();
         BackgroundPanel backgroundPanel = new BackgroundPanel();
         setContentPane(backgroundPanel);
         
