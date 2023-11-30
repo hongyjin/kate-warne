@@ -17,7 +17,8 @@ public class Choice extends JFrame {
 	   }
 	 private void moveToAnotherPage() {
          setVisible(false);
-         MainFrame.getInstance().setVisible(true);
+         new FullStory().setVisible(true);
+         //MainFrame.getInstance().setVisible(true);
      }
 	 
     private class BackgroundPanel extends JPanel {
