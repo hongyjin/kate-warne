@@ -1,6 +1,7 @@
 package katewarne;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
 
 public class KeyListener extends KeyAdapter {
 	// 점프 시 왼쪽 or 오른쪽 방향키가 눌렸는지 확인하기 위해 선언
@@ -14,7 +15,6 @@ public class KeyListener extends KeyAdapter {
 	//키 눌렀을 때
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("Key Pressed: " + e.getKeyCode());
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Main.detec.moveToLeft();
 			pressedLeftKey = true;
@@ -47,11 +47,11 @@ public class KeyListener extends KeyAdapter {
                 }
             }
         }
+		
 	}
 	//키에서 뗐을 떄 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("Key Released: " + e.getKeyCode());
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			pressedLeftKey = false;
 		}
