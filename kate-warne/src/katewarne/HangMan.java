@@ -235,14 +235,5 @@ public class HangMan extends JPanel {
         }
     }
 
-    public static void main(String[] args) {
-        // 테스트용으로 프레임 생성 및 패널 추가
-        JFrame frame = new JFrame("Hangman Game");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
 
-        HangMan hangManPanel = new HangMan();
-        frame.getContentPane().add(hangManPanel);
-        frame.setVisible(true);
-    }
 }

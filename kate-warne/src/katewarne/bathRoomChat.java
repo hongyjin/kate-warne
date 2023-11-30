@@ -16,7 +16,7 @@ public class bathRoomChat extends JFrame {
 
     public bathRoomChat() {
         setTitle("케이트 와르네: 대저택 살인사건");
-        setSize(800, 640);
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
