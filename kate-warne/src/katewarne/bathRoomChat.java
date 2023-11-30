@@ -119,7 +119,7 @@ public class bathRoomChat extends JFrame {
 
     private void handleFullHouseButtonClick() {
     	setVisible(false); // 현재 창 감추기
-        new MainFrame().setVisible(true);;
+        new MainFrame().setVisible(true);
     }
 
     private void openBathroomPanel() {
