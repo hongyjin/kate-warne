@@ -22,10 +22,7 @@ public class LawyerRoom extends JFrame {
 			+ " 세민재단… 너무 익숙한 이름인데…??\n"
 			+ "혹시 김변호가 재산을 가로채기위해서 범행을…?";
 	String message3 = "웬 택배상자지..?\n"
-			+ "택배번호를 한번 조회해볼까?\n"
-			+ "음? 절연장갑 구매..?\n"
-			+ "감전을 피할일이 있었나..?\n"
-			+ "왜 절연장갑을 구매했을까?";
+			+ "택배번호를 한번 조회해볼까?";
    private class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 

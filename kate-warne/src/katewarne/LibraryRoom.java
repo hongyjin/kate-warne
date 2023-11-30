@@ -13,9 +13,7 @@ import java.awt.event.MouseEvent;
 public class LibraryRoom extends JFrame {
 	private static LibraryRoom instance;
 	String message1 = "홍작가의 방에 웬 rc카가..? \n"
-			+ "홍작가한테 rc카를 좋아한다는 얘긴 못 들었는데..\n"
-			+ "그러고보니, 여기에 무슨 소금결정 같은게 남아있잖아?! \n"
-			+ "좀 젖어있는 것 같기도 해! 뭔가 중요한 단서일 것 같군";
+			+ "홍작가한테 rc카를 좋아한다는 얘긴 못 들었는데..";
 	String message2 = "이름은 최손님인데, 최손님의 사진이 아니잖아?!\n"
 			+ " 그럼 설마 교도관 신분으로 와있다는 최손님이 설마 교도관이 아닌걸까?\n"
 			+ "이걸 홍작가는 알고 있던거야?!\n"

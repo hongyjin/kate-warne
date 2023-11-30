@@ -26,7 +26,6 @@ public class Main extends JFrame {
         private Image backgroundImage;
 
         public BackgroundPanel() {
-            //backgroundImage = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\게임배경2.jpg").getImage();
         	backgroundImage = new ImageIcon("./assets/images/게임배경2.jpg").getImage();
         }
 
@@ -64,7 +63,6 @@ public class Main extends JFrame {
          private Image startImage;
 
          public StartPanel() {
-             //startImage = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\용의자를피해라.png").getImage();
         	 startImage = new ImageIcon("./assets/images/용의자를피해라.png").getImage();
              addMouseListener(new MouseAdapter() {
                  @Override
@@ -80,9 +78,41 @@ public class Main extends JFrame {
              g.drawImage(startImage, 0, 0, getWidth(), getHeight(), this);
          }
      }
+ 	
+	public class LastPanel extends JPanel {
+        private Image lastImage;
+        private Main mainInstance;
+
+        public LastPanel(Main mainInstance) {
+            this.mainInstance = mainInstance;
+            lastImage = new ImageIcon("./assets/images/guestKey.png").getImage();
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    mainInstance.removeLastPanel(); // mainInstance를 통해 Main 클래스의 메서드 호출
+                }
+            });
+        }
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(lastImage, 0, 0, getWidth(), getHeight(), this);
+        }
+        public void removeLastPanel() {
+            mainInstance.removeLastPanel();
+        }
+    }
+	private void removeLastPanel() {
+        getContentPane().remove(lastPanel);
+        revalidate();
+        repaint();
+    }
+ 	
  	 
  	 private BackgroundPanel backgroundPanel;
      private StartPanel startPanel;
+     public LastPanel lastPanel;
+     
  	//스테이지 생성
  	public static Stage stage = new Stage();
  	
@@ -111,6 +141,7 @@ public class Main extends JFrame {
     }
     
     
+    
    
     //생성자
     public Main() {
@@ -129,6 +160,11 @@ public class Main extends JFrame {
         startPanel = new StartPanel();
         add(startPanel);
         startPanel.setBounds(0, 0, 800, 600);
+        
+        //마지막에 LastPanel 띄우기
+        lastPanel = new LastPanel(this);
+        
+        
         
         // 게임종료버튼
         JButton goBackButton = new JButton("게임 종료하기");

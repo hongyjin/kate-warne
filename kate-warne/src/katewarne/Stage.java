@@ -1,10 +1,19 @@
 package katewarne;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import java.util.Iterator;
 
 
 public class Stage extends Thread {
+	
+      	
 	 private boolean isRunning = false;
 	 private Key key;  // Key 클래스 인스턴스 추가
 	 public synchronized void startStage() {
@@ -139,7 +148,8 @@ public class Stage extends Thread {
 	    // itemList가 비어있으면 "성공" 
 	    if (itemList.isEmpty()) {
 	    	key.setKeyImage(key.getSuccessfulGames(), true); // 키를 증가시키는 함수 추가
-	        handleGameSuccess();
+	   
+	        handleGameSuccess(); 
 	    }
 	}
 
@@ -189,7 +199,6 @@ public class Stage extends Thread {
 		while (itemList.size() > 0 && !isInterrupted()) {
 		    eatItems();
 		    Main.detec.checkLaddering();
-		    System.out.println(Main.detec.getPos_X());
 		    Main.detec.drop();
 		    
 		    
@@ -200,6 +209,8 @@ public class Stage extends Thread {
 		            return; 
 		        }
 		    }
+	
+		    
 		}
 		
 	}

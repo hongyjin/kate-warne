@@ -14,12 +14,9 @@ public class GuestRoom extends JFrame {
 	private static GuestRoom instance;
 	String message1 = "홍작가 무서운 사람이잖아..?\n"
 			+ "소설을 위해서 이런 범행까지 저질르다니… \n"
-			+ "이건 뭐야? 대신 누명을 쓰고 감옥에 갔다온 사람이 있다고..?\n"
-			+ "그게 최손님인것 같다니..?\n"
-			+ "최손님의 정체는 뭘까";
+			+ "근데 이걸 왜 최손님이 갖고 있는 걸까?";
 	String message2 = "어?! 이건 홍작가에 대한 인터뷰 스크랩이잖아.\n"
-			+ "홍작가에 대해 왜 이렇게 관심이 많은 거지?\n"
-			+ "설마 진짜 홍작가 대신 누명을 쓰고 감옥에 갔던거야..?";
+			+ "홍작가에 대해 왜 이렇게 관심이 많은 거지?";
 	String message3 = "전기기사자격증……\n"
 			+ "감전사고로 의심되는 사건의 용의자가 전기기사자격증이라…\n"
 			+ "확실히 의심스럽군.";
@@ -133,7 +130,6 @@ public class GuestRoom extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setVisible(false);                   
-                        //new guest_game.Main().setVisible(true);
                         Main.getInstance().setVisible(true);
                     }
                 });
