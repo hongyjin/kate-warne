@@ -115,6 +115,7 @@ public class bathRoomChat extends JFrame {
             }
         });
         add(fullHouseButton);
+        
     }
 
     private void handleFullHouseButtonClick() {
@@ -170,7 +171,6 @@ public class bathRoomChat extends JFrame {
             spHoverPanel.setBounds(210, 330, 40, 60);
             add(spHoverPanel);
             spHoverPanel.setOpaque(false);
-
             // 입욕제 호버를 위한 패널
             JPanel bsHoverPanel = createBathSaltsHoverPanel();
             bsHoverPanel.setBounds(620, 440, 40, 60);
@@ -180,6 +180,7 @@ public class bathRoomChat extends JFrame {
             
             addFullHouseButton("./assets/images/fullHouseButton.png", 600, 20); // 대저택 이동 버튼
             addImageLabel("./assets/images/BathroomImage.png", 0, 0); // 욕실 배경 이미지
+            
         }
 
         private JPanel createBathHoverPanel() {

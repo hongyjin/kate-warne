@@ -194,7 +194,7 @@ public class HangMan extends JPanel {
             // 정답을 모두 맞추면 게임 종료
             if (guessedWord.toString().equalsIgnoreCase(answer)) {
 
-            	key.setKeyImage(0, true);
+
             	getKey =true;
     	       
     	        LawyerRoom lawyerRoomInstance = LawyerRoom.getInstance();

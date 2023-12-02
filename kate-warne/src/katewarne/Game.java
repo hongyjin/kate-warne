@@ -53,7 +53,7 @@ public class Game extends JFrame {
 	private Timer timerMix = new Timer(); // Added this line
 	private Timer timerHide = new Timer(); // Added this line
 	private Timer timerCardCheck; // Added this line
-
+	private Key key;  // Key 클래스 인스턴스 추가
 	public Game() {
 		setTitle("케이트 와르네: 대저택 살인사건");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -277,6 +277,7 @@ public class Game extends JFrame {
 
 	void dialogResult() {
 		//JOptionPane.showMessageDialog(this, "게임 완료!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+		key.setKeyImage(0, true); // 키를 증가시키는 함수 추가
 		int option = JOptionPane.showOptionDialog(this,
                 "게임 완료!", "Game over", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null, null, null);
