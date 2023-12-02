@@ -193,13 +193,12 @@ public class HangMan extends JPanel {
 
             // 정답을 모두 맞추면 게임 종료
             if (guessedWord.toString().equalsIgnoreCase(answer)) {
-            	key.setKeyImage(0, true);
+            	key.setKeyImage(2, true);
                 int option = JOptionPane.showOptionDialog(HangMan.this,
                         "축하합니다! 단어를 맞췄습니다.", "게임 종료", JOptionPane.DEFAULT_OPTION,
                         JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
                 System.exit(0);
-
             } else {
                 // 틀린 경우 목숨 감소 및 레벨 변경
                 if (!correctGuess) {
