@@ -13,6 +13,10 @@ import java.awt.event.MouseEvent;
 
 public class LawyerRoom extends JFrame {
 	private static LawyerRoom instance;
+	public LastPanel lastPanel;
+	private JButton button1;  // 필드로 선언
+    private JButton button2;  // 필드로 선언
+    private JButton button3;  // 필드로 선언
 	String message1 = "기사내용이 “화재사건의 유일한 생존자 김변호”..?\n"
 			+ "김변호가 힘들게 살아왔나보군.. \n"
 			+ "근데 범인이 별모양의 흉터를 갖고있다라…\n"
@@ -39,6 +43,43 @@ public class LawyerRoom extends JFrame {
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
         }
     }
+   public class LastPanel extends JPanel {
+       private Image lastImage;
+       private JButton button1;
+       private JButton button2;
+       private JButton button3;
+
+       public LastPanel(JButton button1, JButton button2, JButton button3) {
+    	   this.button1 = button1;
+           this.button2 = button2;
+           this.button3 = button3;
+           lastImage = new ImageIcon("./assets/images/lawyerKey.png").getImage();
+           addMouseListener(new MouseAdapter() {
+               @Override
+               public void mouseClicked(MouseEvent e) {
+                   removeLastPanel(); 
+               }
+           });
+       }
+       @Override
+       protected void paintComponent(Graphics g) {
+           super.paintComponent(g);
+           g.drawImage(lastImage, 0, 0, getWidth(), getHeight(), this);
+           hideButton();
+       }
+       public void hideButton() {
+           if (button1 != null) button1.setVisible(false);
+           if (button2 != null) button2.setVisible(false);
+           if (button3 != null) button3.setVisible(false);
+           repaint();
+       }
+   }
+	private void removeLastPanel() {
+       getContentPane().remove(lastPanel);
+       revalidate();
+       repaint();
+   }
+   
    // 이미지 크기 조절 메서드
    private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
        Image img = icon.getImage();
@@ -51,6 +92,12 @@ public class LawyerRoom extends JFrame {
        }
        return instance;
    }
+   public void setKeyStatus(boolean keyStatus) {
+       if (keyStatus) {
+           add(lastPanel);
+           lastPanel.setBounds(0, 0, 800, 600);
+       }
+   }
    
     public LawyerRoom() {
         setTitle("김변호 방");
@@ -60,6 +107,8 @@ public class LawyerRoom extends JFrame {
         BackgroundPanel backgroundPanel = new BackgroundPanel();
         setContentPane(backgroundPanel);
         backgroundPanel.setLayout(null);
+        
+        lastPanel = new LastPanel(button1, button2, button3);
 
 
         // 버튼
@@ -227,8 +276,8 @@ public class LawyerRoom extends JFrame {
     
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new LawyerRoom().setVisible(true);
+    	SwingUtilities.invokeLater(() -> {
+            LawyerRoom.getInstance().setVisible(true);
         });
     }
 }
