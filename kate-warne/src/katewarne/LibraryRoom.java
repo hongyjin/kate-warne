@@ -12,6 +12,10 @@ import java.awt.event.MouseEvent;
 
 public class LibraryRoom extends JFrame {
 	private static LibraryRoom instance;
+	public LastPanel lastPanel;
+	private JButton button1;  // 필드로 선언
+    private JButton button2;  // 필드로 선언
+    private JButton button3;  // 필드로 선언
 	String message1 = "홍작가의 방에 웬 rc카가..? \n"
 			+ "홍작가한테 rc카를 좋아한다는 얘긴 못 들었는데..";
 	String message2 = "이름은 최손님인데, 최손님의 사진이 아니잖아?!\n"
@@ -35,6 +39,44 @@ public class LibraryRoom extends JFrame {
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
         }
     }
+    
+    public class LastPanel extends JPanel {
+        private Image lastImage;
+        private JButton button1;
+        private JButton button2;
+        private JButton button3;
+
+        public LastPanel(JButton button1, JButton button2, JButton button3) {
+     	   this.button1 = button1;
+            this.button2 = button2;
+            this.button3 = button3;
+            lastImage = new ImageIcon("./assets/images/writerKey.png").getImage();
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    removeLastPanel(); 
+                }
+            });
+        }
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(lastImage, 0, 0, getWidth(), getHeight(), this);
+            hideButton();
+        }
+        public void hideButton() {
+            if (button1 != null) button1.setVisible(false);
+            if (button2 != null) button2.setVisible(false);
+            if (button3 != null) button3.setVisible(false);
+            repaint();
+        }
+    }
+ 	private void removeLastPanel() {
+        getContentPane().remove(lastPanel);
+        revalidate();
+        repaint();
+    }
+ 	
 
    // 이미지 크기 조절 메서드
     private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
@@ -48,6 +90,12 @@ public class LibraryRoom extends JFrame {
         }
         return instance;
     }
+    public void setKeyStatus(boolean keyStatus) {
+        if (keyStatus) {
+            add(lastPanel);
+            lastPanel.setBounds(0, 0, 800, 600);
+        }
+    }
 
     public LibraryRoom() {
         setTitle("홍작가 방");
@@ -58,9 +106,9 @@ public class LibraryRoom extends JFrame {
         setContentPane(backgroundPanel);
         backgroundPanel.setLayout(null);
         
+        lastPanel = new LastPanel(button1, button2, button3);
         
-    
-
+        
         // 버튼
         JButton goBackButton = new JButton("뒤로가기");
         goBackButton.setBackground(Color.BLACK); 
@@ -225,8 +273,8 @@ public class LibraryRoom extends JFrame {
     
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new LibraryRoom().setVisible(true);
+    	SwingUtilities.invokeLater(() -> {
+            LibraryRoom.getInstance().setVisible(true);
         });
     }
 }

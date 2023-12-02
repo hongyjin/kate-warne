@@ -276,8 +276,8 @@ public class GuestRoom extends JFrame {
     
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new GuestRoom().setVisible(true);
+    	SwingUtilities.invokeLater(() -> {
+            GuestRoom.getInstance().setVisible(true);
         });
     }
 }

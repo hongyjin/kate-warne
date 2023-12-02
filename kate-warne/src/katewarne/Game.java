@@ -23,6 +23,7 @@ import java.awt.*;
 
 public class Game extends JFrame {
 	private static Game instance;
+	public static boolean getKey = false;
 	public static Game getInstance() {
 	       if (instance == null) {
 	           instance = new Game();
@@ -193,6 +194,11 @@ public class Game extends JFrame {
 								end = end + 1;
 								if (end == 20) {
 									dialogResult();
+									getKey =true;
+									LibraryRoom libraryRoomInstance = LibraryRoom.getInstance();
+						            if (libraryRoomInstance != null) {
+						                libraryRoomInstance.setKeyStatus(getKey);
+						            }
 									break;
 								}
 							}
@@ -270,7 +276,16 @@ public class Game extends JFrame {
 	}
 
 	void dialogResult() {
-		JOptionPane.showMessageDialog(this, "게임 완료!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+		//JOptionPane.showMessageDialog(this, "게임 완료!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+		int option = JOptionPane.showOptionDialog(this,
+                "게임 완료!", "Game over", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+        if (option == JOptionPane.OK_OPTION) {
+        	setVisible(false);
+	        LibraryRoom.getInstance().setVisible(true);
+
+	    }
 	}
 
 	public static void main(String[] args) {
