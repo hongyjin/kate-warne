@@ -110,7 +110,6 @@ class MainFrame extends JFrame {
         // 최손님 버튼 위치 및 정렬 설정
         goToGuestRoomButton.setBounds(360,170,75,30);
         backgroundPanel.add(goToGuestRoomButton);
-      
         
         // 김변호 버튼 위치 및 정렬 설정
         goToLaywerRoomButton.setBounds(495,420,75,30);

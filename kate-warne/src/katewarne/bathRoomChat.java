@@ -27,12 +27,12 @@ public class bathRoomChat extends JFrame {
         add(bathroomPanel);
 
         hImageLabel = new JLabel();
-        hImageLabel.setBounds(0, 0, 800, 650);
+        hImageLabel.setBounds(0, 0, 800, 600);
         add(hImageLabel);
         addTextLabels();
         
-        addChatButton("./assets/images/chatButton.png", 650, 525);
-        addChatBoxImage("./assets/images/chatBoxImage.png", 78, 390);
+        addChatButton("./assets/images/chatButton.png", 650, 495);
+        addChatBoxImage("./assets/images/chatBoxImage.png", 78, 350);
         addImageLabel("./assets/images/BathroomImage.png", 0, 0);
 
         
@@ -44,14 +44,14 @@ public class bathRoomChat extends JFrame {
         textLabel1 = new JLabel("케이트 와르네");
         textLabel1.setForeground(Color.WHITE);
         textLabel1.setFont(new Font("Malgun Gothic", Font.BOLD, 18));
-        textLabel1.setBounds(120, 450, 600, 30);
+        textLabel1.setBounds(120, 420, 600, 30);
         add(textLabel1);
 
         // 대화 내용
         textLabel2 = new JLabel("사건은 작가 저택의 화장실에서 발생했군..");
         textLabel2.setForeground(Color.WHITE);
         textLabel2.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
-        textLabel2.setBounds(120, 490, 600, 30);
+        textLabel2.setBounds(120, 460, 600, 30);
         add(textLabel2);
     }
 

@@ -151,7 +151,7 @@ public class Stage extends Thread {
 	    // itemList가 비어있으면 "성공" 
 	    if (itemList.isEmpty()) {	   
 	        
-	        key.setKeyImage(key.getSuccessfulGames(), true); // 키를 증가시키는 함수 추가
+	        key.setKeyImage(1, true); // 키를 증가시키는 함수 추가
 	        getKey =true;
 	        //MainFrame.getInstance().setKeyStatus(getKey);
 	        GuestRoom guestRoomInstance = GuestRoom.getInstance();
