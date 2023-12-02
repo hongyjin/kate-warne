@@ -209,11 +209,11 @@ public class HangMan extends JPanel {
 
                 //System.exit(0);
                 if (option == JOptionPane.OK_OPTION) {
+                	setVisible(false);
         	        LawyerRoom.getInstance().setVisible(true);
-
         	    }
 
-                System.exit(0);
+               
             } else {
                 // 틀린 경우 목숨 감소 및 레벨 변경
                 if (!correctGuess) {
