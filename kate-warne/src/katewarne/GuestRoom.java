@@ -8,10 +8,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import katewarne.Main.LastPanel;
 import katewarne.MainFrame.BackgroundPanel;
 
 public class GuestRoom extends JFrame {
 	private static GuestRoom instance;
+	public LastPanel lastPanel;
+	private JButton button1;  // 필드로 선언
+    private JButton button2;  // 필드로 선언
+    private JButton button3;  // 필드로 선언
 	String message1 = "홍작가 무서운 사람이잖아..?\n"
 			+ "소설을 위해서 이런 범행까지 저질르다니… \n"
 			+ "근데 이걸 왜 최손님이 갖고 있는 걸까?";
@@ -37,6 +42,43 @@ public class GuestRoom extends JFrame {
         }
     }
    
+   public class LastPanel extends JPanel {
+       private Image lastImage;
+       private JButton button1;
+       private JButton button2;
+       private JButton button3;
+
+       public LastPanel(JButton button1, JButton button2, JButton button3) {
+    	   this.button1 = button1;
+           this.button2 = button2;
+           this.button3 = button3;
+           lastImage = new ImageIcon("./assets/images/guestKey.png").getImage();
+           addMouseListener(new MouseAdapter() {
+               @Override
+               public void mouseClicked(MouseEvent e) {
+                   removeLastPanel(); 
+               }
+           });
+       }
+       @Override
+       protected void paintComponent(Graphics g) {
+           super.paintComponent(g);
+           g.drawImage(lastImage, 0, 0, getWidth(), getHeight(), this);
+           hideButton();
+       }
+       public void hideButton() {
+           if (button1 != null) button1.setVisible(false);
+           if (button2 != null) button2.setVisible(false);
+           if (button3 != null) button3.setVisible(false);
+           repaint();
+       }
+   }
+	private void removeLastPanel() {
+       getContentPane().remove(lastPanel);
+       revalidate();
+       repaint();
+   }
+      
    // 이미지 크기 조절 메서드
    private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
        Image img = icon.getImage();
@@ -50,16 +92,24 @@ public class GuestRoom extends JFrame {
        }
        return instance;
    }
+   public void setKeyStatus(boolean keyStatus) {
+       if (keyStatus) {
+           add(lastPanel);
+           lastPanel.setBounds(0, 0, 800, 600);
+       }
+   }
    
     public GuestRoom() {
         setTitle("최손님 방");
         setSize(800, 600);
         setResizable(false); //크기못바꾸게
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       
         BackgroundPanel backgroundPanel = new BackgroundPanel();
         setContentPane(backgroundPanel);
         backgroundPanel.setLayout(null);
+        
+        //lastPanel = new LastPanel();
+        lastPanel = new LastPanel(button1, button2, button3);
 
         // 버튼
         JButton goBackButton = new JButton("뒤로가기");

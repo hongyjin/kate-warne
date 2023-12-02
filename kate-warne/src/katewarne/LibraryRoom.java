@@ -56,8 +56,9 @@ public class LibraryRoom extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         BackgroundPanel backgroundPanel = new BackgroundPanel();
         setContentPane(backgroundPanel);
-        
         backgroundPanel.setLayout(null);
+        
+        
     
 
         // 버튼
