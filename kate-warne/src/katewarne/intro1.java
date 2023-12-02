@@ -15,19 +15,19 @@ public class intro1 extends JFrame {
 	private JTextArea textArea;
 
 	private String textToShow = 
-			"나는 케이트 와르네. 바로 탐정이지"
-		    + "사회가 복잡해지고 기술이 발전할수록 사건들들은 미지해진다."
-		    + "사회가 외면한 사건들, 사람들에게 잊혀진 사건들,,,"
-		    + "하지만 당사자들에겐 평생을 남을 악몽이겠지"
-		    + "악몽을 깰 수 있도록, 새로운 아침을 맞이할 수 있도록"
-		    + "하는 것이 바로 탐정의 역할이다."
-		    + "오늘도 악몽에서 벗어날 누군가의 새로운 아침을 위해"
-		    + "나는 나의 아침을 악몽으로 보낸다.";
+			"나는 케이트 와르네. 바로 탐정이지\n" 
+			+ "사회가 복잡해지고 기술이 발전할수록 사건들은 미지해진다.\n"
+			+ "사회가 외면한 사건들, 사람들에게 잊혀진 사건들,,,\n" 
+			+ "하지만 당사자들에겐 평생을 남을 악몽이겠지\n" 
+			+ "악몽을 깰 수 있도록, 새로운 아침을 맞이할 수 있도록\n"
+			+ "하는 것이 바로 탐정의 역할이다.\n" 
+			+ "오늘도 악몽에서 벗어날 누군가의 새로운 아침을 위해" 
+			+ "나는 나의 아침을 악몽으로 보낸다...";
 
 	private int currentIndex = 0;
 
 	public intro1() {
-		setTitle("Typewriter Text");
+		setTitle("케이트 와르네: 대저택 살인사건");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -39,7 +39,6 @@ public class intro1 extends JFrame {
 		textArea.setWrapStyleWord(true);
 		textArea.setEditable(false);
 
-		// Set caret to the end, so it automatically scrolls to show new text
 		DefaultCaret caret = (DefaultCaret) textArea.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
@@ -53,11 +52,14 @@ public class intro1 extends JFrame {
 					currentIndex++;
 
 					if (textArea.getLineCount() >= textArea.getHeight() / textArea.getFont().getSize()) {
-						// If the text exceeds the visible area, add a newline
+						
 						textArea.append("\n");
 					}
 				} else {
-					((Timer) e.getSource()).stop(); // Stop the timer when all text is displayed
+					((Timer) e.getSource()).stop(); 
+					
+					dispose(); 
+					new findletter(); 
 				}
 			}
 		});

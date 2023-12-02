@@ -22,16 +22,16 @@ public class gamestart extends JFrame {
 
 	public gamestart() {
 		// JFrame 설정
-		setTitle("Game Start");
+		setTitle("케이트 와르네: 대저택 살인사건");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// 배경 이미지 로드
-		String imagePath = "C:\\Users\\simpl\\OneDrive\\문서\\카카오톡 받은 파일\\KakaoTalk_20231112_002414941_01.png";
+		String imagePath = "./assets/images/KakaoTalk_20231112_002414941_01.png";
 		backgroundImage = new ImageIcon(imagePath).getImage();
 
 		// 이미지 버튼의 배경 이미지 로드
-		String buttonImagePath = "C:\\Users\\simpl\\OneDrive\\문서\\카카오톡 받은 파일\\KakaoTalk_20231112_002414941.png";
+		String buttonImagePath = "./assets/images/KakaoTalk_20231112_002414941.png";
 		buttonImage = new ImageIcon(buttonImagePath).getImage();
 
 		// JFrame에 컨텐츠 팬 추가
@@ -58,8 +58,9 @@ public class gamestart extends JFrame {
 				if (mouseX >= buttonX && mouseX <= buttonX + buttonWidth && mouseY >= buttonY
 						&& mouseY <= buttonY + buttonHeight) {
 					// 버튼을 클릭한 경우
-					// 이 부분에서 클릭된 경우의 동작을 수행
-					System.out.println("Button Clicked!");
+					// Intro1 클래스로 이동
+					new intro1();
+					dispose(); // 현재 화면 닫기
 				}
 			}
 		});

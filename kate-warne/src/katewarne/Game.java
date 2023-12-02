@@ -1,118 +1,249 @@
 package katewarne;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class Game extends JFrame {
-    private Image backgroundImage;
-    private Timer timer;
-    private JButton lastClickedButton; // 마지막으로 클릭된 버튼
-    private int remainingButtons; // 남은 버튼의 수
 
-    public Game() {
-        // JFrame 설정
-        setTitle("카드 뒤집기 게임");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private File path = new File(""); // Set your image path here
+	private int[] cardRandom = new int[20];
+	private int selectedTwoCardCheck;
+	private int firstCardNumber;
+	private int secondCardNumber;
+	private int selectedImageNumber;
+	private ImageIcon selectedImage;
+	private JLabel labelConfirmedCheck; // Added this line
+	private Image backgroundImage;
 
-        // 배경 이미지 로드
-        String imagePath = "./asset/image/game/darkBackground.png";
-        backgroundImage = new ImageIcon(imagePath).getImage();
+	private JPanel panel1;
+	private JButton buttonStart;
 
-        // JFrame에 컨텐츠 팬 추가
-        JPanel mainPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                drawBackground(g);
-            }
-        };
+	private JPanel panel2;
+	private ImageIcon imageBack;
+	private ImageIcon[] imageIcon = new ImageIcon[20];
+	private JLabel[] labelImage = new JLabel[20];
+	private JLabel labelSelectedFirst;
+	private JLabel labelSelectedSecond;
 
-        // JButton 생성 및 추가
-        for (int i = 1; i <= 20; i++) {
-            JButton button = createButton(i);
-            mainPanel.add(button);
-        }
+	private Timer timerMix = new Timer(); // Added this line
+	private Timer timerHide = new Timer(); // Added this line
+	private Timer timerCardCheck; // Added this line
 
-        // JFrame에 컨텐츠 팬으로 mainPanel 추가
-        setContentPane(mainPanel);
+	public Game() {
+		setTitle("케이트 와르네: 대저택 살인사건");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Timer 설정
-        timer = new Timer(3000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                hideImages();
-                lastClickedButton = null; // 타이머가 끝나면 마지막 클릭 버튼 초기화
-            }
-        });
+		String imagePath = "./assets/images/game/darkBackground.png";
+		backgroundImage = new ImageIcon(imagePath).getImage();
 
-        // JFrame 표시 설정
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
+		panel1 = new JPanel1();
+		panel2 = new JPanel2();
 
-    private JButton createButton(int index) {
-        JButton button = new JButton("뒤집기");
+		add(panel1, BorderLayout.NORTH);
+		add(panel2, BorderLayout.CENTER);
 
-        int buttonSize = 100; // 버튼 크기
-        button.setPreferredSize(new Dimension(buttonSize, buttonSize)); // 크기 조정
+		setSize(800, 600);
+		setVisible(true);
+	}
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 이미지 표시
-                showImage(button, index, buttonSize);
-            }
-        });
+	class JPanel1 extends JPanel {
+		public JPanel1() {
+			setLayout(new GridLayout(1, 1));
 
-        return button;
-    }
+			buttonStart = new JButton("게임 시작");
 
-    private void drawBackground(Graphics g) {
-        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-    }
+			add(buttonStart);
 
-    private void showImage(JButton button, int index, int buttonSize) {
-        String imagePath = getButtonImagePath(index);
-        ImageIcon icon = new ImageIcon(imagePath);
-        Image scaledImage = icon.getImage().getScaledInstance(buttonSize, buttonSize, Image.SCALE_SMOOTH);
+			buttonStart.addActionListener(new MyActionListenerNewGame());
+		}
+	}
 
-        // 이미지 표시
-        button.setIcon(new ImageIcon(scaledImage));
+	class JPanel2 extends JPanel {
+		public JPanel2() {
+			setLayout(new GridLayout(4, 5, 10, 30));
 
-        // 마지막 클릭된 버튼 기록
-        lastClickedButton = button;
+			mixNumber();
+			setImage();
+			setButtonFirstImage();
+			setButtonName();
 
-        // 남은 버튼의 수 초기화
-        remainingButtons = getContentPane().getComponentCount();
+			for (int i = 0; i < 20; i++) {
+				labelImage[i] = new JLabel(imageIcon[i]);
+				labelImage[i].addMouseListener(new JjacMouseListener());
+				add(labelImage[i]);
+			}
+		}
+	}
 
-        // 타이머 시작
-        timer.restart();
-    }
+	class MyActionListenerNewGame implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			setButtonName();
+			selectedTwoCardCheck = 0;
 
-    private void hideImages() {
-        if (remainingButtons > 1) {
-            // 마지막 클릭 버튼을 제외하고 모든 버튼의 이미지 숨기기
-            for (Component component : getContentPane().getComponents()) {
-                if (component instanceof JButton) {
-                    JButton button = (JButton) component;
-                    if (button != lastClickedButton) {
-                        button.setIcon(null);
-                    }
-                }
-            }
-        }
-    }
+			timerMix.scheduleAtFixedRate(new TimerTask() {
+				int i = 0;
 
-    private String getButtonImagePath(int index) {
-        // 각 버튼에 대한 이미지 경로 반환 (이미지가 10개씩 반복됨)
-        int imageIndex = (index - 1) % 10 + 1;
-        return "./asset/image/game/button" + imageIndex + ".png";
-    }
+				public void run() {
+					mixNumber();
+					setImage();
+					setButtonResetImage();
+					i = i + 1;
+					if (i == 20)
+						timerMix.cancel();
+				}
+			}, 0, 50);
 
-    public static void main(String[] args) {
-        new Game();
-    }
+			timerHide.scheduleAtFixedRate(new TimerTask() {
+				public void run() {
+					hideButtonImage();
+					timerHide.cancel();
+				}
+			}, 2000, 1);
+		}
+	}
+
+	private class JjacMouseListener extends MouseAdapter {
+		public void mousePressed(MouseEvent e) {
+			labelConfirmedCheck = ((JLabel) e.getSource());
+			if (labelConfirmedCheck.getName().equals("checked")) {
+				selectedTwoCardCheck = 0;
+			} else if (selectedTwoCardCheck == 0 || selectedTwoCardCheck == 1) {
+				selectedTwoCardCheck += 1;
+
+				if (selectedTwoCardCheck == 1) {
+					labelSelectedFirst = ((JLabel) e.getSource());
+					selectedImageNumber = Integer.parseInt(labelSelectedFirst.getName()) - 1;
+					selectedImage = new ImageIcon(
+							path + "./assets/images/game/" + cardRandom[selectedImageNumber] + ".png");
+					labelSelectedFirst.setIcon(selectedImage);
+
+					firstCardNumber = cardRandom[selectedImageNumber];
+					if (cardRandom[selectedImageNumber] > 10)
+						firstCardNumber = cardRandom[selectedImageNumber] - 10;
+				}
+
+				if (labelConfirmedCheck.getName().equals(labelSelectedFirst.getName())) {
+					selectedTwoCardCheck = 1;
+				} else if (selectedTwoCardCheck == 2) {
+					labelSelectedSecond = ((JLabel) e.getSource());
+					selectedImageNumber = Integer.parseInt(labelSelectedSecond.getName()) - 1;
+					selectedImage = new ImageIcon(
+							path + "./assets/images/game/" + cardRandom[selectedImageNumber] + ".png");
+					labelSelectedSecond.setIcon(selectedImage);
+
+					secondCardNumber = cardRandom[selectedImageNumber];
+					if (cardRandom[selectedImageNumber] > 10)
+						secondCardNumber = cardRandom[selectedImageNumber] - 10;
+
+					if (firstCardNumber == secondCardNumber) {
+						selectedTwoCardCheck = 0;
+						labelSelectedFirst.setName("checked");
+						labelSelectedSecond.setName("checked");
+
+						int end = 0;
+						for (int i = 0; i < 20; i++) {
+							if ((labelImage[i].getName()).equals("checked")) {
+								end = end + 1;
+								if (end == 20) {
+									dialogResult();
+									break;
+								}
+							}
+						}
+
+					} else {
+						timerCardCheck = new Timer();
+						timerCardCheck.scheduleAtFixedRate(new TimerTask() {
+							public void run() {
+								selectedTwoCardCheck = 0;
+								labelSelectedFirst.setIcon(imageBack);
+								labelSelectedSecond.setIcon(imageBack);
+								timerCardCheck.cancel();
+							}
+						}, 300, 1);
+					}
+				}
+			}
+		}
+	}
+
+	void mixNumber() {
+		int i = 0;
+		int rand;
+		while (true) {
+			rand = (int) (Math.random() * 20 + 1);
+			cardRandom[i] = rand;
+
+			aa: for (int j = 0; j < 20; j++) {
+				if (j == i)
+					break aa;
+				if (cardRandom[j] == rand) {
+					i = i - 1;
+				}
+			}
+			i = i + 1;
+			if (i == -1)
+				i = 0;
+			if (i == 20)
+				break;
+		}
+	}
+
+	JLabel imgLabel = new JLabel();
+
+	void setImage() {
+		imageBack = new ImageIcon(path + "./assets/images/game/0.png");
+		for (int i = 0; i < 20; i++) {
+			imageIcon[i] = new ImageIcon(path + "./assets/images/game/" + cardRandom[i] + ".png");
+		}
+	}
+
+	void setButtonFirstImage() {
+		for (int i = 0; i < 20; i++) {
+			labelImage[i] = new JLabel(imageIcon[i]);
+		}
+	}
+
+	void setButtonResetImage() {
+		for (int i = 0; i < 20; i++) {
+			labelImage[i].setIcon(imageIcon[i]);
+		}
+	}
+
+	void setButtonName() {
+		for (int i = 0; i < 20; i++) {
+			labelImage[i].setName(Integer.toString(i + 1));
+		}
+	}
+
+	void hideButtonImage() {
+		for (int i = 0; i < 20; i++) {
+			labelImage[i].setIcon(imageBack);
+		}
+	}
+
+	void dialogResult() {
+		JOptionPane.showMessageDialog(this, "게임 완료!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(() -> new Game());
+	}
 }
