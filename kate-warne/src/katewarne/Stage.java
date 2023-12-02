@@ -15,6 +15,7 @@ public class Stage extends Thread {
 	
       	
 	 private boolean isRunning = false;
+	 public static boolean getKey = false;
 	 private Key key;  // Key 클래스 인스턴스 추가
 	 public synchronized void startStage() {
 	        if (!isRunning) {
@@ -149,8 +150,16 @@ public class Stage extends Thread {
 	private void checkGameStatus() {
 	    // itemList가 비어있으면 "성공" 
 	    if (itemList.isEmpty()) {	   
-	        handleGameSuccess(); 
+	        
 	        key.setKeyImage(key.getSuccessfulGames(), true); // 키를 증가시키는 함수 추가
+	        getKey =true;
+	        //MainFrame.getInstance().setKeyStatus(getKey);
+	        GuestRoom guestRoomInstance = GuestRoom.getInstance();
+            if (guestRoomInstance != null) {
+                guestRoomInstance.setKeyStatus(getKey);
+            }
+	        handleGameSuccess(); 
+
 	    }
 	}
 
