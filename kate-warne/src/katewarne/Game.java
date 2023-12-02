@@ -18,9 +18,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.*;
+import java.awt.*;
 
 public class Game extends JFrame {
-
+	private static Game instance;
+	public static Game getInstance() {
+	       if (instance == null) {
+	           instance = new Game();
+	       }
+	       return instance;
+	   }
 	private File path = new File(""); // Set your image path here
 	private int[] cardRandom = new int[20];
 	private int selectedTwoCardCheck;
@@ -48,6 +56,10 @@ public class Game extends JFrame {
 	public Game() {
 		setTitle("케이트 와르네: 대저택 살인사건");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//원래 이 코드쓰면 화면이 가운데로 와야하는데... 이건 안되네요...?
+		//setLocationRelativeTo(null); 
+		
 
 		String imagePath = "./assets/images/game/darkBackground.png";
 		backgroundImage = new ImageIcon(imagePath).getImage();
@@ -60,6 +72,24 @@ public class Game extends JFrame {
 
 		setSize(800, 600);
 		setVisible(true);
+		
+		// 뒤로가기 버튼
+        JButton goBackButton = new JButton("게임 종료하기");
+        goBackButton.setBackground(Color.BLACK);
+        goBackButton.setForeground(Color.WHITE);
+        goBackButton.setFocusPainted(false);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        buttonPanel.setBackground(Color.WHITE);
+        buttonPanel.add(goBackButton);
+        add(buttonPanel, BorderLayout.PAGE_END);
+        goBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                LibraryRoom.getInstance().setVisible(true);
+                
+            }
+        }); 
 	}
 
 	class JPanel1 extends JPanel {
@@ -244,6 +274,8 @@ public class Game extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> new Game());
+		 SwingUtilities.invokeLater(() -> {
+	            Game.getInstance().setVisible(true);
+	        });
 	}
 }

@@ -151,8 +151,7 @@ public class LibraryRoom extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setVisible(false); 
-                        new Game().setVisible(true);
-                        //Main.getInstance().setVisible(true);
+                        Game.getInstance().setVisible(true);
                     }
                 });
             	
