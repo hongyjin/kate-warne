@@ -25,14 +25,12 @@ public class Choice extends JFrame {
 	 private void moveToAnotherPage() {
          setVisible(false);
          new FullStory().setVisible(true);
-         //MainFrame.getInstance().setVisible(true);
      }
 	 
     private class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
         public BackgroundPanel() {
-            //backgroundImage = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\darkBackground.png").getImage();
             backgroundImage = new ImageIcon("./assets/images/darkBackground.png").getImage();
             JLabel textLabel = new JLabel("범인은 누구일까요?");
             Font labelFont = textLabel.getFont();
@@ -62,7 +60,6 @@ public class Choice extends JFrame {
             setBorder(BorderFactory.createLineBorder(Color.YELLOW, 6));
             setLayout(null);
 
-            //ImageIcon imageIcon = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\최손님.png");
             ImageIcon imageIcon = new ImageIcon("./assets/images/최손님.png");
             
             JLabel imageLabel = new JLabel(resizeIcon(imageIcon, 110, 135));
@@ -70,7 +67,7 @@ public class Choice extends JFrame {
             imageLabel.setBounds(110, 45, 110, 135);
             add(imageLabel);
 
-            //ImageIcon imageIcon2 = new ImageIcon("C:\\Users\\user\\Downloads\\자바 일러스트 모음\\김변호.png");
+       
             ImageIcon imageIcon2 = new ImageIcon("./assets/images/김변호.png");
             JLabel imageLabel2 = new JLabel(resizeIcon(imageIcon2, 100, 130));
             imageLabel2.setHorizontalAlignment(JLabel.CENTER);
