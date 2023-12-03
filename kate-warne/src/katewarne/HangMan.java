@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class HangMan extends JPanel {
-	public static boolean getKey = false;
     private ImageIcon backgroundImage;
     private ImageIcon levelImage;
     private String answer = "lawyer"; // 정답 단어
@@ -194,23 +193,14 @@ public class HangMan extends JPanel {
             // 정답을 모두 맞추면 게임 종료
             if (guessedWord.toString().equalsIgnoreCase(answer)) {
 
-
-            	getKey =true;
-    	       
-    	        LawyerRoom lawyerRoomInstance = LawyerRoom.getInstance();
-                if (lawyerRoomInstance != null) {
-                    lawyerRoomInstance.setKeyStatus(getKey);
-                }
-
             	key.setKeyImage(2, true);
                 int option = JOptionPane.showOptionDialog(HangMan.this,
                         "축하합니다! 단어를 맞췄습니다.", "게임 종료", JOptionPane.DEFAULT_OPTION,
                         JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
-                //System.exit(0);
                 if (option == JOptionPane.OK_OPTION) {
                 	setVisible(false);
-        	        LawyerRoom.getInstance().setVisible(true);
+        	        Choice.getInstance().setVisible(true);
         	    }
 
                

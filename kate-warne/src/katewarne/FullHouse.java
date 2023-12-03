@@ -98,8 +98,8 @@ class MainFrame extends JFrame {
         goToChoice.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	setVisible(false); // 현재 창 감추기
-                new Choice().setVisible(true); 
+            	setVisible(false); 
+            	HangmanFrame.getInstance().setVisible(true);
             }
         });
 

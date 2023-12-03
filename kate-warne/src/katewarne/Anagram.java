@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Anagram extends JPanel {
+	public static boolean getKey = false;
 	private static Anagram instance;
     private static final String TARGET_WORD = "insulation";
     private List<CharacterLabel> characterLabels;
@@ -47,7 +49,19 @@ public class Anagram extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String userAnswer = answerField.getText();
                 if (userAnswer.equalsIgnoreCase(TARGET_WORD)) {
-                    JOptionPane.showMessageDialog(Anagram.this, "맞았습니다!");
+                	getKey =true;
+                	LawyerRoom lawyerRoomInstance = LawyerRoom.getInstance();
+                    if (lawyerRoomInstance != null) {
+                        lawyerRoomInstance.setKeyStatus(getKey);
+                    }
+                    int option = JOptionPane.showOptionDialog(Anagram.this,
+                            "축하합니다! 단어를 맞췄습니다.", "게임 종료", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+                    if (option == JOptionPane.OK_OPTION) {
+                    	AnagramFrame.getInstance().setVisible(false);
+            	        LawyerRoom.getInstance().setVisible(true);
+            	    }
                 } else {
                     JOptionPane.showMessageDialog(Anagram.this, "틀렸습니다. 다시 입력해보세요");
                 }
@@ -61,7 +75,7 @@ public class Anagram extends JPanel {
         goBackButton.setForeground(Color.WHITE);
         goBackButton.setFocusPainted(false);
         goBackButton.setBounds(50,40,90,30);
-        add(goBackButton);
+        //add(goBackButton);
         //게임종료버튼 클릭
         goBackButton.addActionListener(new ActionListener() {
             @Override
@@ -167,21 +181,5 @@ public class Anagram extends JPanel {
 
             setLocation(x, y);
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("애너그램");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(800, 600);
-        	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        	frame.setLocationRelativeTo(null);
-
-            Anagram anagramPanel = Anagram.getInstance();
-            frame.getContentPane().add(anagramPanel);
-            anagramPanel.setVisible(true);
-
-            frame.setVisible(true);
-        });
     }
 }
