@@ -1,6 +1,8 @@
 package katewarne;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,12 +14,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class Anagram extends JPanel {
-
+	private static Anagram instance;
     private static final String TARGET_WORD = "insulation";
     private List<CharacterLabel> characterLabels;
     private Image backgroundImage;
     private JLabel instructionLabel;
+    public static Anagram getInstance() {
+        if (instance == null) {
+            instance = new Anagram();
+        }
+        return instance;
+    }
     public Anagram() {
+    
         // 배경 이미지
         ImageIcon backgroundImageIcon = new ImageIcon("./assets/images/background.png");
         backgroundImage = backgroundImageIcon.getImage();
@@ -46,6 +55,22 @@ public class Anagram extends JPanel {
         });
         checkButton.setBounds(470, 500, 120, 30);
         
+        //게임 종료 버튼
+        JButton goBackButton = new JButton("게임 종료하기");
+        goBackButton.setBackground(Color.BLACK);
+        goBackButton.setForeground(Color.WHITE);
+        goBackButton.setFocusPainted(false);
+        goBackButton.setBounds(50,40,90,30);
+        add(goBackButton);
+        //게임종료버튼 클릭
+        goBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                LawyerRoom.getInstance().setVisible(true);
+            }
+        }); 
+        
         // 게임 설명 레이블 
         ImageIcon instructionIcon = new ImageIcon("./assets/images/anagram_instruction.png");
         Image instructionImage = instructionIcon.getImage().getScaledInstance(765, 550, Image.SCALE_SMOOTH);
@@ -64,6 +89,7 @@ public class Anagram extends JPanel {
             }
         });
         add(instructionLabel);
+       
     }
 
 
@@ -144,13 +170,18 @@ public class Anagram extends JPanel {
     }
 
     public static void main(String[] args) {
-        // 테스트용으로 프레임 생성 및 패널 추가
-        JFrame frame = new JFrame("애너그램");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("애너그램");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(800, 600);
+        	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        	frame.setLocationRelativeTo(null);
 
-        Anagram anagramPanel = new Anagram();
-        frame.getContentPane().add(anagramPanel);
-        frame.setVisible(true);
+            Anagram anagramPanel = Anagram.getInstance();
+            frame.getContentPane().add(anagramPanel);
+            anagramPanel.setVisible(true);
+
+            frame.setVisible(true);
+        });
     }
 }

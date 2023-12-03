@@ -79,39 +79,12 @@ public class Main extends JFrame {
          }
      }
  	
-	public class LastPanel extends JPanel {
-        private Image lastImage;
-        private Main mainInstance;
-
-        public LastPanel(Main mainInstance) {
-            this.mainInstance = mainInstance;
-            lastImage = new ImageIcon("./assets/images/guestKey.png").getImage();
-            addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    mainInstance.removeLastPanel(); // mainInstance를 통해 Main 클래스의 메서드 호출
-                }
-            });
-        }
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(lastImage, 0, 0, getWidth(), getHeight(), this);
-        }
-        public void removeLastPanel() {
-            mainInstance.removeLastPanel();
-        }
-    }
-	private void removeLastPanel() {
-        getContentPane().remove(lastPanel);
-        revalidate();
-        repaint();
-    }
+	
  	
  	 
  	 private BackgroundPanel backgroundPanel;
      private StartPanel startPanel;
-     public LastPanel lastPanel;
+     
      
  	//스테이지 생성
  	public static Stage stage = new Stage();
@@ -160,9 +133,7 @@ public class Main extends JFrame {
         startPanel = new StartPanel();
         add(startPanel);
         startPanel.setBounds(0, 0, 800, 600);
-        
-        //마지막에 LastPanel 띄우기
-        lastPanel = new LastPanel(this);
+       
         
         
         

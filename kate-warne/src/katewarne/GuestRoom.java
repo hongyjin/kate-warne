@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import katewarne.Main.LastPanel;
 import katewarne.MainFrame.BackgroundPanel;
 
 public class GuestRoom extends JFrame {
