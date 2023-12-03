@@ -19,9 +19,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.*;
+import java.awt.*;
 
 public class Game extends JFrame {
-
+	
+	private static Game instance;
+	public static Game getInstance() {
+	       if (instance == null) {
+	           instance = new Game();
+	       }
+	       return instance;
+	   }
+	public static boolean getKey = false;
 	private File path = new File(""); // Set your image path here
 	private int[] cardRandom = new int[20]; // 카드 랜덤 20개
 	private int selectedTwoCardCheck;
@@ -46,9 +56,9 @@ public class Game extends JFrame {
 	private Timer timerCardCheck;
 
 	public Game() {
-		setTitle("케이트 와르네: 대저택 살인사건");
+		setTitle("카드 짝 맞추기 게임");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		//setLocationRelativeTo(null);
 		String imagePath = "./assets/images/game/darkBackground.png";
 		backgroundImage = new ImageIcon(imagePath).getImage();
 
@@ -60,6 +70,23 @@ public class Game extends JFrame {
 
 		setSize(800, 600);
 		setVisible(true);
+		// 뒤로가기 버튼
+        JButton goBackButton = new JButton("게임 종료하기");
+        goBackButton.setBackground(Color.BLACK);
+        goBackButton.setForeground(Color.WHITE);
+        goBackButton.setFocusPainted(false);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        buttonPanel.setBackground(Color.WHITE);
+        buttonPanel.add(goBackButton);
+        add(buttonPanel, BorderLayout.PAGE_END);
+        goBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                LibraryRoom.getInstance().setVisible(true);
+
+            }
+        }); 
 	}
 
 	// panel1에는 게임 시작 버튼 만들기
@@ -213,6 +240,11 @@ public class Game extends JFrame {
 								end = end + 1;
 								// 20개가 되면 게임 종료
 								if (end == 20) {
+									getKey =true;
+									LibraryRoom libraryRoomInstance = LibraryRoom.getInstance();
+					                if (libraryRoomInstance != null) {
+					                    libraryRoomInstance.setKeyStatus(getKey);
+					                }
 									dialogResult(); // 게임 완료 출력 창
 									break;
 								}
@@ -312,10 +344,18 @@ public class Game extends JFrame {
 
 	// 게임 완료 창 띄우기
 	void dialogResult() {
-		JOptionPane.showMessageDialog(this, "게임 완료!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+		int option = JOptionPane.showOptionDialog(this,
+                "게임완료", "게임 종료", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, null, null);
+		if (option == JOptionPane.OK_OPTION) {
+        	setVisible(false);
+	        LibraryRoom.getInstance().setVisible(true);
+	    }
 	}
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> new Game());
+		SwingUtilities.invokeLater(() -> {
+            Game.getInstance().setVisible(true);
+        });
 	}
 }
