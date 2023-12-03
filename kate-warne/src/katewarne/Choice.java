@@ -9,6 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Choice extends JFrame {
+	private static Choice instance;
+	 public static Choice getInstance() {
+	       if (instance == null) {
+	           instance = new Choice();
+	       }
+	       return instance;
+	   }
 	
 	 private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
 	       Image img = icon.getImage();
@@ -160,7 +167,7 @@ public class Choice extends JFrame {
         goBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+            	Choice.getInstance().setVisible(false);
                 MainFrame.getInstance().setVisible(true);
             }
         });
@@ -174,8 +181,8 @@ public class Choice extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new Choice().setVisible(true);
+    	SwingUtilities.invokeLater(() -> {
+            Choice.getInstance().setVisible(true);
         });
     }
 }

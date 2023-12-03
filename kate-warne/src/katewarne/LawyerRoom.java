@@ -199,8 +199,7 @@ public class LawyerRoom extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         setVisible(false);                   
-                        //Main.getInstance().setVisible(true);
-                        HangmanFrame.getInstance().setVisible(true);
+                        AnagramFrame.getInstance().setVisible(true);
                     }
                 });
             	
