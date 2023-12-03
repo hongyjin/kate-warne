@@ -23,7 +23,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Game extends JFrame {
-	
+	private Key key;  // Key 클래스 인스턴스 추가
 	private static Game instance;
 	public static Game getInstance() {
 	       if (instance == null) {
@@ -347,6 +347,7 @@ public class Game extends JFrame {
 		int option = JOptionPane.showOptionDialog(this,
                 "게임완료", "게임 종료", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null, null, null);
+		key.setKeyImage(0, true);
 		if (option == JOptionPane.OK_OPTION) {
         	setVisible(false);
 	        LibraryRoom.getInstance().setVisible(true);

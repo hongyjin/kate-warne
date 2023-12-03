@@ -21,6 +21,7 @@ public class Anagram extends JPanel {
     private List<CharacterLabel> characterLabels;
     private Image backgroundImage;
     private JLabel instructionLabel;
+    private Key key;  // Key 클래스 인스턴스 추가
     public static Anagram getInstance() {
         if (instance == null) {
             instance = new Anagram();
@@ -28,7 +29,7 @@ public class Anagram extends JPanel {
         return instance;
     }
     public Anagram() {
-    
+    	key = Key.getInstance();
         // 배경 이미지
         ImageIcon backgroundImageIcon = new ImageIcon("./assets/images/background.png");
         backgroundImage = backgroundImageIcon.getImage();
@@ -54,6 +55,7 @@ public class Anagram extends JPanel {
                     if (lawyerRoomInstance != null) {
                         lawyerRoomInstance.setKeyStatus(getKey);
                     }
+                    key.setKeyImage(2, true);
                     int option = JOptionPane.showOptionDialog(Anagram.this,
                             "축하합니다! 단어를 맞췄습니다.", "게임 종료", JOptionPane.DEFAULT_OPTION,
                             JOptionPane.INFORMATION_MESSAGE, null, null, null);

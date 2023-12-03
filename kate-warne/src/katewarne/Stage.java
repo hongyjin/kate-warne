@@ -89,7 +89,7 @@ public class Stage extends Thread {
 	public void handleGameSuccess() {
 		Object[] options = {"예", "다시하기"};
 		String message = "Game Clear!\n다시 방으로 이동하시겠습니까?";
-
+		key.setKeyImage(1, true);
 		int result = JOptionPane.showOptionDialog(
 			    null, 
 			    message, 
